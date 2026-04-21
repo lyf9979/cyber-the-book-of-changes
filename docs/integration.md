@@ -49,7 +49,7 @@ with open("skill/SKILL.md") as f:
 # 加载参考文档
 reference_docs = {}
 for name in ["bazi-calculation", "yongshen-rules", "ten-dimensions",
-             "liunian-analysis", "output-template"]:
+             "liunian-analysis", "output-template", "html-template"]:
     with open(f"references/{name}.md") as f:
         reference_docs[name] = f.read()
 
@@ -72,6 +72,9 @@ system_prompt = f"""
 
 ### output-template.md
 {reference_docs['output-template']}
+
+### html-template.md
+{reference_docs['html-template']}
 """
 
 client = anthropic.Anthropic()
@@ -79,7 +82,7 @@ response = client.messages.create(
     model="claude-opus-4-7",
     max_tokens=8000,
     system=system_prompt,
-    messages=[{"role": "user", "content": "2001.11.28 00:53 男 算一下"}]
+    messages=[{"role": "user", "content": "1988.06.15 09:30 女 算一下"}]
 )
 print(response.content[0].text)
 ```
@@ -201,7 +204,7 @@ model = genai.GenerativeModel(
     system_instruction=system_prompt
 )
 
-response = model.generate_content("2001.11.28 00:53 男")
+response = model.generate_content("1988.06.15 09:30 女")
 print(response.text)
 ```
 
@@ -290,14 +293,15 @@ chmod +x merge-skill.sh
 接入后使用以下标准输入测试：
 
 ```
-请分析：2001.11.28 00:53 男
+请分析：1988.06.15 09:30 女（请同时输出文本版和 HTML 版）
 ```
 
 检查输出应包含：
-- ✅ 四柱排盘（辛巳 己亥 戊寅 壬子）
+- ✅ 四柱排盘（包含年柱/月柱/日柱/时柱）
 - ✅ 十大维度全部覆盖
 - ✅ 近三年流年建议
 - ✅ 综合建议收尾
+- ✅ 用户要求时可输出精美 HTML
 - ✅ 不含绝对预言和玄学黑话
 
 ---

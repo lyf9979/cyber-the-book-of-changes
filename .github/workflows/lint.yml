@@ -34,7 +34,7 @@ jobs:
 
       - name: Test bazi calculator
         run: |
-          python scripts/bazi_calculator.py --date 2001-11-28 --time 00:53 --gender male
+          python scripts/bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
           python scripts/bazi_calculator.py --date 1990-05-15 --time 14:30 --gender female --longitude 114
           python scripts/bazi_calculator.py --date 2000-01-01 --time 12:00 --gender male --json
 
@@ -55,6 +55,8 @@ jobs:
           test -f references/ten-dimensions.md
           test -f references/liunian-analysis.md
           test -f references/output-template.md
+          test -f references/html-template.md
           test -f docs/integration.md
           test -f examples/example-01.md
+          test -f examples/example-01.html
           echo "✅ All required markdown files exist"

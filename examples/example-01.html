@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>赛博周易 - 示例命盘报告（虚构案例）</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffdf8;
+      --text: #2b2b2b;
+      --muted: #6a655a;
+      --accent: #8b1e1e;
+      --accent-2: #6b7a52;
+      --line: #d8cdb7;
+      --gold: #c9a227;
+      --wood: #4f7d39;
+      --water: #2f5d8a;
+      --fire: #b33a2f;
+      --earth: #8a6a3a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: radial-gradient(circle at top right, #ece6d9, var(--bg) 45%);
+      color: var(--text);
+      font: 16px/1.7 "Source Han Serif SC", "Songti SC", "STSong", serif;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 16px 36px rgba(54, 43, 30, 0.12);
+      overflow: hidden;
+    }
+    header {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(135deg, #f8f2e6, #f3ece0);
+    }
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+    .sub {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    main { padding: 24px 24px 32px; }
+    .note {
+      border: 1px dashed var(--line);
+      background: #fbf7ef;
+      color: #5f584b;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    h2 {
+      margin: 20px 0 12px;
+      color: var(--accent);
+      border-left: 4px solid var(--accent);
+      padding-left: 8px;
+      font-size: 22px;
+    }
+    h3 { margin: 16px 0 8px; font-size: 18px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: #fffefb;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid var(--line);
+      margin-top: 8px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th { background: #f6efe3; }
+    .dm { color: var(--accent); font-weight: 700; }
+    .bars { margin-top: 8px; }
+    .bar {
+      display: grid;
+      grid-template-columns: 56px 1fr 42px;
+      gap: 8px;
+      align-items: center;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+    .track {
+      height: 10px;
+      border-radius: 999px;
+      background: #ece6da;
+      overflow: hidden;
+    }
+    .fill { height: 100%; border-radius: 999px; }
+    .f-gold { background: var(--gold); }
+    .f-wood { background: var(--wood); }
+    .f-water { background: var(--water); }
+    .f-fire { background: var(--fire); }
+    .f-earth { background: var(--earth); }
+    .timeline .item {
+      border-left: 3px solid #c6b79a;
+      padding: 8px 10px;
+      margin: 8px 0;
+      background: #fff;
+    }
+    .timeline .current {
+      border-left-color: var(--accent);
+      background: #fff6f4;
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 12px;
+      border-radius: 999px;
+      background: #f0e6d7;
+      color: #5a4b36;
+      margin-left: 8px;
+    }
+    .year-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    ul, ol { margin: 8px 0 0; padding-left: 20px; }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 14px 24px;
+      font-size: 13px;
+      color: var(--muted);
+      background: #faf6ee;
+    }
+    @media (max-width: 900px) {
+      .grid, .year-cards { grid-template-columns: 1fr; }
+      body { padding: 10px; }
+      header { padding: 20px; }
+      main { padding: 16px; }
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .container { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>赛博周易 · 命盘分析报告</h1>
+      <div class="sub">精美 HTML 展示版（示例）| 生成时间：2026-04-21</div>
+    </header>
+    <main>
+      <div class="note">
+        本页面是虚构演示案例，不包含任何真实个人隐私信息。
+      </div>
+
+      <h2>一、命盘排列</h2>
+      <div class="grid">
+        <section class="card">
+          <h3>基本信息</h3>
+          <ul>
+            <li>公历：1988-06-15 09:30</li>
+            <li>农历：戊辰年 五月 初二 巳时（演示口径）</li>
+            <li>性别：女</li>
+            <li>出生地：未提供（东八区标准时）</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3>格局摘要</h3>
+          <ul>
+            <li>日主：辛金（中和）</li>
+            <li>格局倾向：官印相生，兼食神泄秀</li>
+            <li>喜用神：金、水</li>
+            <li>忌神：火土过旺</li>
+          </ul>
+        </section>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th></th><th>年柱</th><th>月柱</th><th>日柱</th><th>时柱</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>天干</th><td>戊</td><td>丙</td><td class="dm">辛（日主）</td><td>癸</td></tr>
+          <tr><th>地支</th><td>辰</td><td>午</td><td>丑</td><td>巳</td></tr>
+          <tr><th>藏干</th><td>戊乙癸</td><td>丁己</td><td>己癸辛</td><td>丙庚戊</td></tr>
+        </tbody>
+      </table>
+
+      <section class="card">
+        <h3>五行统计</h3>
+        <div class="bars">
+          <div class="bar"><span>金</span><div class="track"><div class="fill f-gold" style="width: 66%"></div></div><span>2.1</span></div>
+          <div class="bar"><span>木</span><div class="track"><div class="fill f-wood" style="width: 19%"></div></div><span>0.6</span></div>
+          <div class="bar"><span>水</span><div class="track"><div class="fill f-water" style="width: 53%"></div></div><span>1.7</span></div>
+          <div class="bar"><span>火</span><div class="track"><div class="fill f-fire" style="width: 75%"></div></div><span>2.4</span></div>
+          <div class="bar"><span>土</span><div class="track"><div class="fill f-earth" style="width: 69%"></div></div><span>2.2</span></div>
+        </div>
+      </section>
+
+      <section class="card timeline">
+        <h3>大运排布</h3>
+        <div class="item">丁未（6-16）</div>
+        <div class="item">戊申（16-26）</div>
+        <div class="item current">己酉（26-36）<span class="pill">当前</span></div>
+        <div class="item">庚戌（36-46）</div>
+        <div class="item">辛亥（46-56）</div>
+      </section>
+
+      <h2>二、十大维度（摘要）</h2>
+      <div class="grid">
+        <section class="card"><strong>1. 性格</strong><p>重边界、重质量、执行力强，做事偏结构化。</p></section>
+        <section class="card"><strong>2. 感情</strong><p>重稳定与责任，适合先价值观一致再深度承诺。</p></section>
+        <section class="card"><strong>3. 家庭六亲</strong><p>早年责任感强，后期对后辈具指导能力。</p></section>
+        <section class="card"><strong>4. 财富</strong><p>稳健积累优于投机，适合长期复利路径。</p></section>
+        <section class="card"><strong>5. 健康</strong><p>注意作息与消化压力，减少长期高压状态。</p></section>
+        <section class="card"><strong>6. 事业</strong><p>宜规则明确且专业性高的岗位，后期可向专家/管理升级。</p></section>
+        <section class="card"><strong>7. 配偶特征</strong><p>偏务实可靠型，相识多在工作或学习场景。</p></section>
+        <section class="card"><strong>8. 居住风水</strong><p>宜整洁通风，清爽色系为主，少闷热杂乱。</p></section>
+        <section class="card"><strong>9. 学业名气</strong><p>体系化学习强，适合通过内容输出形成影响力。</p></section>
+        <section class="card"><strong>10. 事件节点</strong><p>26-36 定型，36-46 升级，46+ 影响力外溢。</p></section>
+      </div>
+
+      <h2>三、近三年趋势</h2>
+      <div class="year-cards">
+        <section class="card">
+          <h3>2026</h3>
+          <p>结构调整年，适合做职业升级准备。</p>
+          <ul><li>宜：能力盘点、证书升级</li><li>忌：冲动转轨</li></ul>
+        </section>
+        <section class="card">
+          <h3>2027</h3>
+          <p>稳步兑现年，投入开始回报。</p>
+          <ul><li>宜：项目闭环、方法沉淀</li><li>忌：频繁变更策略</li></ul>
+        </section>
+        <section class="card">
+          <h3>2028</h3>
+          <p>责任上升年，机会与压力并行。</p>
+          <ul><li>宜：聚焦高确定性目标</li><li>忌：并行项目过多</li></ul>
+        </section>
+      </div>
+
+      <h2>四、综合建议</h2>
+      <section class="card">
+        <ol>
+          <li>坚持长期主义，构建可复用能力资产。</li>
+          <li>事业上提升可见度，同时控制节奏。</li>
+          <li>关系中少评判、多反馈，增强情绪沟通。</li>
+          <li>财务以稳健分散为主，避免情绪化投资。</li>
+          <li>规律作息和运动，是运势稳定的重要基础。</li>
+        </ol>
+      </section>
+    </main>
+    <footer>
+      传统命理文化解读仅供参考，不替代医疗、法律、金融等专业意见。
+    </footer>
+  </div>
+</body>
+</html>
+

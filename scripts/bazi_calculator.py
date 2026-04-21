@@ -6,9 +6,9 @@ Cyber Book of Changes - Bazi Calculator
 使用权威开源历法库 sxtwl（寿星天文历）保证排盘精度。
 
 使用示例：
-    python bazi_calculator.py --date 2001-11-28 --time 00:53 --gender male
+    python bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
     python bazi_calculator.py --date 1990-05-15 --time 14:30 --gender female --longitude 114
-    python bazi_calculator.py --date 2001-11-28 --time 00:53 --gender male --json
+    python bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female --json
 
 依赖安装：
     pip install sxtwl
@@ -467,9 +467,9 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例：
-  python bazi_calculator.py --date 2001-11-28 --time 00:53 --gender male
+  python bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
   python bazi_calculator.py --date 1990-05-15 --time 14:30 --gender female --longitude 114.3
-  python bazi_calculator.py --date 2001-11-28 --time 00:53 --gender male --json
+  python bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female --json
         """
     )
     parser.add_argument('--date', required=True, help='出生日期 YYYY-MM-DD（公历）')

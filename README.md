@@ -18,6 +18,7 @@
 - ✅ **十大维度覆盖**：性格、感情、家庭、财富、健康、事业、配偶、居住/风水、学业考试名气、事件节点
 - ✅ **近三年流年建议**：基于当前大运流年输出可操作的具体建议
 - ✅ **结构化输出**：排盘 → 格局 → 十大维度 → 流年 → 综合建议，层次清晰
+- ✅ **双格式输出**：默认直接文本输出 + 可选精美 HTML 展示
 - ✅ **多平台适配**：Claude Skill / OpenAI Codex / ChatGPT / Cursor / Windsurf / 通用 LLM
 - ✅ **可追溯**：每个结论都回溯到命盘具体干支，拒绝"玄学黑话"
 - ✅ **文化向 + 理性**：纯传统文化解读，不推销、不恐吓、不替代专业决策
@@ -87,7 +88,7 @@ cp AGENTS.md .windsurfrules
 **用户输入**：
 
 ```
-2001.11.28 00:53 男 算一下我的八字
+1988.06.15 09:30 女 算一下我的八字
 ```
 
 **AI 输出结构**：
@@ -114,13 +115,14 @@ cp AGENTS.md .windsurfrules
 │   ├─ 9. 学业 / 考试 / 名气
 │   └─ 10. 人生事件节点
 ├─ 四、近三年发展趋势建议
-│   ├─ 📅 2025 年（当前流年）
-│   ├─ 📅 2026 年
-│   └─ 📅 2027 年
+│   ├─ 📅 2026 年（当前流年）
+│   ├─ 📅 2027 年
+│   └─ 📅 2028 年
 └─ 五、综合建议
 ```
 
 完整示例见 [`examples/example-01.md`](./examples/example-01.md)。
+精美 HTML 示例见 [`examples/example-01.html`](./examples/example-01.html)。
 
 ---
 
@@ -139,9 +141,11 @@ cyber-the-book-of-changes/
 │   ├── yongshen-rules.md         # 格局与用神
 │   ├── ten-dimensions.md         # 十大维度分析框架
 │   ├── liunian-analysis.md       # 流年大运方法
-│   └── output-template.md        # 输出格式模板
+│   ├── output-template.md        # 文本输出模板
+│   └── html-template.md          # HTML 输出模板
 ├── examples/                     # 分析示例
-│   └── example-01.md
+│   ├── example-01.md             # 文本示例（虚构案例）
+│   └── example-01.html           # 精美 HTML 示例（虚构案例）
 ├── scripts/                      # 辅助脚本
 │   └── bazi_calculator.py        # Python 排盘工具
 ├── docs/
@@ -175,7 +179,7 @@ cyber-the-book-of-changes/
 `scripts/bazi_calculator.py` 提供命令行工具：
 
 ```bash
-python scripts/bazi_calculator.py --date 2001-11-28 --time 00:53 --gender male
+python scripts/bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
 ```
 
 输出四柱、藏干、十神、大运等核心信息。

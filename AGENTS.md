@@ -38,6 +38,7 @@
 | `ten-dimensions.md` | 十大维度分析框架 |
 | `liunian-analysis.md` | 流年大运分析方法 |
 | `output-template.md` | 输出格式模板 |
+| `html-template.md` | 精美 HTML 输出模板 |
 
 ### Step 3: 排盘
 
@@ -84,7 +85,9 @@
 ## 输出约束
 
 - **总字数**：3000–6000 字
-- **格式**：严格按照 `references/output-template.md`
+- **格式**：
+  - 默认：严格按照 `references/output-template.md` 直接文本输出
+  - 用户要求网页展示时：严格按照 `references/html-template.md` 输出精美 HTML
 - **语言**：中文，专业中带温度
 - **禁止**：
   - 绝对化预言（"一定""必定""注定"）
@@ -122,9 +125,11 @@ cyber-the-book-of-changes/
 │   ├── yongshen-rules.md         # 用神规则
 │   ├── ten-dimensions.md         # 十大维度
 │   ├── liunian-analysis.md       # 流年分析
-│   └── output-template.md        # 输出模板
+│   ├── output-template.md        # 输出模板
+│   └── html-template.md          # HTML 输出模板
 ├── examples/                     # 示例命盘分析
-│   └── example-01.md
+│   ├── example-01.md
+│   └── example-01.html
 ├── scripts/                      # 辅助脚本（可选）
 │   └── bazi_calculator.py
 ├── docs/
