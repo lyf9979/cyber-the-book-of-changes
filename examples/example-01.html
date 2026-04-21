@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>赛博周易 - 示例命盘报告（虚构案例）</title>
+  <title>赛博周易 - 示例命盘报告（虚构案例，增强版）</title>
   <style>
     :root {
       --bg: #f5f1e8;
@@ -11,7 +11,6 @@
       --text: #2b2b2b;
       --muted: #6a655a;
       --accent: #8b1e1e;
-      --accent-2: #6b7a52;
       --line: #d8cdb7;
       --gold: #c9a227;
       --wood: #4f7d39;
@@ -25,10 +24,10 @@
       padding: 24px;
       background: radial-gradient(circle at top right, #ece6d9, var(--bg) 45%);
       color: var(--text);
-      font: 16px/1.7 "Source Han Serif SC", "Songti SC", "STSong", serif;
+      font: 16px/1.75 "Source Han Serif SC", "Songti SC", "STSong", serif;
     }
     .container {
-      max-width: 1080px;
+      max-width: 1160px;
       margin: 0 auto;
       background: var(--paper);
       border: 1px solid var(--line);
@@ -41,17 +40,8 @@
       border-bottom: 1px solid var(--line);
       background: linear-gradient(135deg, #f8f2e6, #f3ece0);
     }
-    h1 {
-      margin: 0;
-      font-size: 32px;
-      color: var(--accent);
-      letter-spacing: 1px;
-    }
-    .sub {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 14px;
-    }
+    h1 { margin: 0; font-size: 32px; color: var(--accent); letter-spacing: 1px; }
+    .sub { margin-top: 8px; color: var(--muted); font-size: 14px; }
     main { padding: 24px 24px 32px; }
     .note {
       border: 1px dashed var(--line);
@@ -63,7 +53,7 @@
       margin-bottom: 16px;
     }
     h2 {
-      margin: 20px 0 12px;
+      margin: 24px 0 12px;
       color: var(--accent);
       border-left: 4px solid var(--accent);
       padding-left: 8px;
@@ -91,10 +81,12 @@
     th, td {
       border: 1px solid var(--line);
       padding: 8px;
-      text-align: center;
-      vertical-align: middle;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
     }
-    th { background: #f6efe3; }
+    th { background: #f6efe3; text-align: center; }
+    .center { text-align: center; }
     .dm { color: var(--accent); font-weight: 700; }
     .bars { margin-top: 8px; }
     .bar {
@@ -105,43 +97,28 @@
       margin: 8px 0;
       font-size: 14px;
     }
-    .track {
-      height: 10px;
-      border-radius: 999px;
-      background: #ece6da;
-      overflow: hidden;
-    }
+    .track { height: 10px; border-radius: 999px; background: #ece6da; overflow: hidden; }
     .fill { height: 100%; border-radius: 999px; }
     .f-gold { background: var(--gold); }
     .f-wood { background: var(--wood); }
     .f-water { background: var(--water); }
     .f-fire { background: var(--fire); }
     .f-earth { background: var(--earth); }
-    .timeline .item {
-      border-left: 3px solid #c6b79a;
-      padding: 8px 10px;
-      margin: 8px 0;
-      background: #fff;
+    details {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fffefb;
+      padding: 8px 12px;
+      margin: 10px 0;
     }
-    .timeline .current {
-      border-left-color: var(--accent);
-      background: #fff6f4;
+    summary {
+      font-weight: 700;
+      cursor: pointer;
+      color: #3f3427;
+      padding: 4px 0;
     }
-    .pill {
-      display: inline-block;
-      padding: 2px 8px;
-      font-size: 12px;
-      border-radius: 999px;
-      background: #f0e6d7;
-      color: #5a4b36;
-      margin-left: 8px;
-    }
-    .year-cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-    ul, ol { margin: 8px 0 0; padding-left: 20px; }
+    .small { font-size: 13px; color: var(--muted); }
+    ol, ul { margin: 6px 0 0; padding-left: 20px; }
     footer {
       border-top: 1px solid var(--line);
       padding: 14px 24px;
@@ -149,15 +126,17 @@
       color: var(--muted);
       background: #faf6ee;
     }
-    @media (max-width: 900px) {
-      .grid, .year-cards { grid-template-columns: 1fr; }
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: 1fr; }
       body { padding: 10px; }
       header { padding: 20px; }
       main { padding: 16px; }
+      th, td { font-size: 13px; }
     }
     @media print {
       body { background: #fff; padding: 0; }
       .container { box-shadow: none; border: none; }
+      details { border: 1px solid #ddd; }
     }
   </style>
 </head>
@@ -165,12 +144,10 @@
   <div class="container">
     <header>
       <h1>赛博周易 · 命盘分析报告</h1>
-      <div class="sub">精美 HTML 展示版（示例）| 生成时间：2026-04-21</div>
+      <div class="sub">精美 HTML 展示版（增强示例）| 生成时间：2026-04-21</div>
     </header>
     <main>
-      <div class="note">
-        本页面是虚构演示案例，不包含任何真实个人隐私信息。
-      </div>
+      <div class="note">本页面为虚构演示案例，不包含任何真实个人隐私信息。</div>
 
       <h2>一、命盘排列</h2>
       <div class="grid">
@@ -187,7 +164,7 @@
           <h3>格局摘要</h3>
           <ul>
             <li>日主：辛金（中和）</li>
-            <li>格局倾向：官印相生，兼食神泄秀</li>
+            <li>格局：官印相生，兼食神泄秀</li>
             <li>喜用神：金、水</li>
             <li>忌神：火土过旺</li>
           </ul>
@@ -199,79 +176,131 @@
           <tr><th></th><th>年柱</th><th>月柱</th><th>日柱</th><th>时柱</th></tr>
         </thead>
         <tbody>
-          <tr><th>天干</th><td>戊</td><td>丙</td><td class="dm">辛（日主）</td><td>癸</td></tr>
-          <tr><th>地支</th><td>辰</td><td>午</td><td>丑</td><td>巳</td></tr>
-          <tr><th>藏干</th><td>戊乙癸</td><td>丁己</td><td>己癸辛</td><td>丙庚戊</td></tr>
+          <tr><th>天干</th><td class="center">戊</td><td class="center">丙</td><td class="center dm">辛（日主）</td><td class="center">癸</td></tr>
+          <tr><th>地支</th><td class="center">辰</td><td class="center">午</td><td class="center">丑</td><td class="center">巳</td></tr>
+          <tr><th>藏干</th><td class="center">戊乙癸</td><td class="center">丁己</td><td class="center">己癸辛</td><td class="center">丙庚戊</td></tr>
         </tbody>
       </table>
 
       <section class="card">
         <h3>五行统计</h3>
         <div class="bars">
-          <div class="bar"><span>金</span><div class="track"><div class="fill f-gold" style="width: 66%"></div></div><span>2.1</span></div>
-          <div class="bar"><span>木</span><div class="track"><div class="fill f-wood" style="width: 19%"></div></div><span>0.6</span></div>
-          <div class="bar"><span>水</span><div class="track"><div class="fill f-water" style="width: 53%"></div></div><span>1.7</span></div>
-          <div class="bar"><span>火</span><div class="track"><div class="fill f-fire" style="width: 75%"></div></div><span>2.4</span></div>
-          <div class="bar"><span>土</span><div class="track"><div class="fill f-earth" style="width: 69%"></div></div><span>2.2</span></div>
+          <div class="bar"><span>金</span><div class="track"><div class="fill f-gold" style="width:66%"></div></div><span>2.1</span></div>
+          <div class="bar"><span>木</span><div class="track"><div class="fill f-wood" style="width:19%"></div></div><span>0.6</span></div>
+          <div class="bar"><span>水</span><div class="track"><div class="fill f-water" style="width:53%"></div></div><span>1.7</span></div>
+          <div class="bar"><span>火</span><div class="track"><div class="fill f-fire" style="width:75%"></div></div><span>2.4</span></div>
+          <div class="bar"><span>土</span><div class="track"><div class="fill f-earth" style="width:69%"></div></div><span>2.2</span></div>
         </div>
       </section>
 
-      <section class="card timeline">
-        <h3>大运排布</h3>
-        <div class="item">丁未（6-16）</div>
-        <div class="item">戊申（16-26）</div>
-        <div class="item current">己酉（26-36）<span class="pill">当前</span></div>
-        <div class="item">庚戌（36-46）</div>
-        <div class="item">辛亥（46-56）</div>
+      <h2>二、十大维度分析（展开查看）</h2>
+      <p class="small">以下为增强版示例结构。真实输出应在每个维度进一步扩展到更完整篇幅。</p>
+
+      <details open>
+        <summary>1) 性格特质</summary>
+        <p><strong>命盘依据：</strong>辛金日主、午火当令、癸水透时，形成“高标准 + 可反思”的性格结构。</p>
+        <p><strong>现实表现：</strong>擅长结构化处理复杂问题，强调质量和边界，执行稳定。对低质量协作容忍度较低。</p>
+        <p><strong>风险点：</strong>完美主义拖延、过度自我施压、情绪表达不足。</p>
+        <p><strong>优化建议：</strong>把标准分层（及格线/目标线/卓越线），保留进度优先窗口，每周做价值-时间对齐复盘。</p>
+      </details>
+      <details><summary>2) 感情运势</summary><p>偏长期承诺型，重责任与稳定。建议建立“规则系统 + 情绪系统”双轨沟通。</p></details>
+      <details><summary>3) 家庭与六亲</summary><p>原生系统责任感较强，建议明确边界，避免无限承担。</p></details>
+      <details><summary>4) 财富格局</summary><p>更适合“主业现金流 + 副业增量 + 长期配置”的稳健模型，少做情绪化决策。</p></details>
+      <details><summary>5) 健康倾向</summary><p>重点是节律管理：作息、饮食、运动、情绪恢复四条线同步推进。</p></details>
+      <details><summary>6) 事业方向</summary><p>适配规则明确、专业门槛高的赛道，建议抓作品、抓方法、抓可见度。</p></details>
+      <details><summary>7) 配偶特征</summary><p>偏务实成熟型，关系升级需“周沟通 + 月仪式 + 季度复盘”。</p></details>
+      <details><summary>8) 居住与风水</summary><p>喜清爽通风、动线清晰、噪音低的环境，空间管理以减量和分区为先。</p></details>
+      <details><summary>9) 学业考试名气</summary><p>适合体系学习与持续输出，采用“1 年主题 + 3 季里程碑 + 12 月输出”。</p></details>
+      <details><summary>10) 人生事件节点</summary><p>2026 重组、2027 兑现、2028 统筹，后续进入管理与影响力扩张阶段。</p></details>
+
+      <h2>三、近三年流年趋势（2026-2028，按月）</h2>
+
+      <section class="card">
+        <h3>2026 年 | 关键词：聚焦、升级、减法</h3>
+        <table>
+          <thead><tr><th>月份</th><th>主线</th><th>风险</th><th>动作</th><th>优先级</th></tr></thead>
+          <tbody>
+            <tr><td>1 月</td><td>目标收敛</td><td>目标过多</td><td>保留 3 个核心目标</td><td>高</td></tr>
+            <tr><td>2 月</td><td>节奏重建</td><td>任务堆积</td><td>建立周计划复盘</td><td>高</td></tr>
+            <tr><td>3 月</td><td>技能补强</td><td>学而不用</td><td>锁定单一课程主题</td><td>中</td></tr>
+            <tr><td>4 月</td><td>可见度提升</td><td>只做不说</td><td>发布公开分享</td><td>高</td></tr>
+            <tr><td>5 月</td><td>项目提速</td><td>拖延</td><td>阶段性交付</td><td>高</td></tr>
+            <tr><td>6 月</td><td>财务优化</td><td>冲动消费</td><td>半年度财务盘点</td><td>中</td></tr>
+            <tr><td>7 月</td><td>关系维护</td><td>沟通弱化</td><td>每周深度对话</td><td>中</td></tr>
+            <tr><td>8 月</td><td>健康修复</td><td>熬夜透支</td><td>固定睡眠窗口</td><td>高</td></tr>
+            <tr><td>9 月</td><td>职业校准</td><td>方向摇摆</td><td>更新作品集</td><td>高</td></tr>
+            <tr><td>10 月</td><td>资源整合</td><td>低效社交</td><td>聚焦关键合作</td><td>中</td></tr>
+            <tr><td>11 月</td><td>成果固化</td><td>经验流失</td><td>形成 SOP</td><td>高</td></tr>
+            <tr><td>12 月</td><td>年终复盘</td><td>情绪化总结</td><td>数据化复盘</td><td>高</td></tr>
+          </tbody>
+        </table>
       </section>
 
-      <h2>二、十大维度（摘要）</h2>
-      <div class="grid">
-        <section class="card"><strong>1. 性格</strong><p>重边界、重质量、执行力强，做事偏结构化。</p></section>
-        <section class="card"><strong>2. 感情</strong><p>重稳定与责任，适合先价值观一致再深度承诺。</p></section>
-        <section class="card"><strong>3. 家庭六亲</strong><p>早年责任感强，后期对后辈具指导能力。</p></section>
-        <section class="card"><strong>4. 财富</strong><p>稳健积累优于投机，适合长期复利路径。</p></section>
-        <section class="card"><strong>5. 健康</strong><p>注意作息与消化压力，减少长期高压状态。</p></section>
-        <section class="card"><strong>6. 事业</strong><p>宜规则明确且专业性高的岗位，后期可向专家/管理升级。</p></section>
-        <section class="card"><strong>7. 配偶特征</strong><p>偏务实可靠型，相识多在工作或学习场景。</p></section>
-        <section class="card"><strong>8. 居住风水</strong><p>宜整洁通风，清爽色系为主，少闷热杂乱。</p></section>
-        <section class="card"><strong>9. 学业名气</strong><p>体系化学习强，适合通过内容输出形成影响力。</p></section>
-        <section class="card"><strong>10. 事件节点</strong><p>26-36 定型，36-46 升级，46+ 影响力外溢。</p></section>
-      </div>
-
-      <h2>三、近三年趋势</h2>
-      <div class="year-cards">
-        <section class="card">
-          <h3>2026</h3>
-          <p>结构调整年，适合做职业升级准备。</p>
-          <ul><li>宜：能力盘点、证书升级</li><li>忌：冲动转轨</li></ul>
-        </section>
-        <section class="card">
-          <h3>2027</h3>
-          <p>稳步兑现年，投入开始回报。</p>
-          <ul><li>宜：项目闭环、方法沉淀</li><li>忌：频繁变更策略</li></ul>
-        </section>
-        <section class="card">
-          <h3>2028</h3>
-          <p>责任上升年，机会与压力并行。</p>
-          <ul><li>宜：聚焦高确定性目标</li><li>忌：并行项目过多</li></ul>
-        </section>
-      </div>
-
-      <h2>四、综合建议</h2>
       <section class="card">
+        <h3>2027 年 | 关键词：兑现、稳定、沉淀</h3>
+        <table>
+          <thead><tr><th>月份</th><th>主线</th><th>风险</th><th>动作</th><th>优先级</th></tr></thead>
+          <tbody>
+            <tr><td>1 月</td><td>高质量开局</td><td>节奏过猛</td><td>控制并行项目数</td><td>高</td></tr>
+            <tr><td>2 月</td><td>现金流管理</td><td>收支失衡</td><td>预算与预警线</td><td>高</td></tr>
+            <tr><td>3 月</td><td>协作优化</td><td>沟通内耗</td><td>固化会议机制</td><td>中</td></tr>
+            <tr><td>4 月</td><td>品牌输出</td><td>节奏中断</td><td>双周内容发布</td><td>中</td></tr>
+            <tr><td>5 月</td><td>项目验收</td><td>细节遗漏</td><td>交付检查清单</td><td>高</td></tr>
+            <tr><td>6 月</td><td>关系升温</td><td>忽略需求</td><td>月度仪式活动</td><td>中</td></tr>
+            <tr><td>7 月</td><td>进修升级</td><td>学习分散</td><td>单主题深耕</td><td>中</td></tr>
+            <tr><td>8 月</td><td>压力管理</td><td>情绪积压</td><td>每周低刺激恢复</td><td>高</td></tr>
+            <tr><td>9 月</td><td>合作扩展</td><td>边界不清</td><td>统一分工规则</td><td>高</td></tr>
+            <tr><td>10 月</td><td>资产优化</td><td>仓位集中</td><td>分散化调整</td><td>中</td></tr>
+            <tr><td>11 月</td><td>经验产品化</td><td>沉淀不足</td><td>打包模板课程</td><td>高</td></tr>
+            <tr><td>12 月</td><td>年度规划</td><td>短视决策</td><td>设下一年北极星指标</td><td>高</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h3>2028 年 | 关键词：统筹、授权、平衡</h3>
+        <table>
+          <thead><tr><th>月份</th><th>主线</th><th>风险</th><th>动作</th><th>优先级</th></tr></thead>
+          <tbody>
+            <tr><td>1 月</td><td>角色确认</td><td>权责模糊</td><td>明确边界</td><td>高</td></tr>
+            <tr><td>2 月</td><td>授权机制</td><td>亲力亲为</td><td>建立授权矩阵</td><td>高</td></tr>
+            <tr><td>3 月</td><td>战略对齐</td><td>方向分散</td><td>月度战略会</td><td>高</td></tr>
+            <tr><td>4 月</td><td>项目攻坚</td><td>资源不足</td><td>提前资源预案</td><td>高</td></tr>
+            <tr><td>5 月</td><td>协同深化</td><td>跨部门摩擦</td><td>结果导向对齐</td><td>中</td></tr>
+            <tr><td>6 月</td><td>防过载</td><td>持续熬夜</td><td>强制恢复日</td><td>高</td></tr>
+            <tr><td>7 月</td><td>稳健扩张</td><td>追快收益</td><td>维持风险纪律</td><td>中</td></tr>
+            <tr><td>8 月</td><td>关系修复</td><td>沟通降级</td><td>非暴力沟通</td><td>中</td></tr>
+            <tr><td>9 月</td><td>能力传承</td><td>过度依赖个人</td><td>建立培训机制</td><td>高</td></tr>
+            <tr><td>10 月</td><td>成果发布</td><td>忽视表达</td><td>系统复盘分享</td><td>中</td></tr>
+            <tr><td>11 月</td><td>项目收口</td><td>尾部松散</td><td>收口里程碑</td><td>高</td></tr>
+            <tr><td>12 月</td><td>结构升级</td><td>惯性停滞</td><td>评估下一阶段角色</td><td>高</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <h2>四、总结与执行清单</h2>
+      <section class="card">
+        <h3>A. 三年总结</h3>
+        <ul>
+          <li>主线：专业能力长期复利，持续提升可见度与复用度。</li>
+          <li>风险：完美主义拖延、关系沟通功能化、恢复不足。</li>
+          <li>策略：2026 打基础，2027 做兑现，2028 做统筹。</li>
+        </ul>
+
+        <h3>B. 执行清单</h3>
+        <p><strong>30 天（8 项）</strong>：目标收敛、周复盘、风险清单、作息稳定、一次公开输出、财务体检、深度沟通、空间复位。</p>
+        <p><strong>90 天（8 项）</strong>：代表作、进修主题、SOP 库、自动化、职业定位复盘、授权清单、关系仪式、健康追踪。</p>
+        <p><strong>年度（8 项）</strong>：事业里程碑 2 项、12 次品牌输出、稳定储蓄率、风险预算、季度关系复盘、表达升级、运动计划、睡眠追踪。</p>
+
+        <h3>C. 复盘机制</h3>
         <ol>
-          <li>坚持长期主义，构建可复用能力资产。</li>
-          <li>事业上提升可见度，同时控制节奏。</li>
-          <li>关系中少评判、多反馈，增强情绪沟通。</li>
-          <li>财务以稳健分散为主，避免情绪化投资。</li>
-          <li>规律作息和运动，是运势稳定的重要基础。</li>
+          <li>每月复盘：有效动作、偏差来源、停止事项、关键关系、身心状态。</li>
+          <li>每季度校准：目标重排、资源重配、节律重建。</li>
+          <li>预警触发：连续两月完成率下滑、疲惫持续、冲突频率上升。</li>
         </ol>
       </section>
     </main>
-    <footer>
-      传统命理文化解读仅供参考，不替代医疗、法律、金融等专业意见。
-    </footer>
+    <footer>传统命理文化解读仅供参考，不替代医疗、法律、金融等专业意见。</footer>
   </div>
 </body>
 </html>
