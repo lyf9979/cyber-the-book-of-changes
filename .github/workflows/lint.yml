@@ -1,0 +1,60 @@
+name: Lint & Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  python-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install sxtwl
+          pip install flake8
+
+      - name: Lint with flake8
+        run: |
+          flake8 scripts/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 scripts/ --count --max-complexity=15 --max-line-length=120 --statistics --exit-zero
+
+      - name: Test bazi calculator
+        run: |
+          python scripts/bazi_calculator.py --date 2001-11-28 --time 00:53 --gender male
+          python scripts/bazi_calculator.py --date 1990-05-15 --time 14:30 --gender female --longitude 114
+          python scripts/bazi_calculator.py --date 2000-01-01 --time 12:00 --gender male --json
+
+  markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check markdown files exist
+        run: |
+          test -f README.md
+          test -f AGENTS.md
+          test -f LICENSE
+          test -f CONTRIBUTING.md
+          test -f skill/SKILL.md
+          test -f references/bazi-calculation.md
+          test -f references/yongshen-rules.md
+          test -f references/ten-dimensions.md
+          test -f references/liunian-analysis.md
+          test -f references/output-template.md
+          test -f docs/integration.md
+          test -f examples/example-01.md
+          echo "✅ All required markdown files exist"

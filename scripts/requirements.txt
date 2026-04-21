@@ -1,0 +1,5 @@
+# 赛博周易 - Python 依赖
+
+# 寿星天文历（权威开源历法库，用于精确排盘）
+# https://github.com/yuttty/sxtwl_cpp
+sxtwl>=2.0.6

@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+env/
+venv/
+.venv
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+output/
+tmp/
+
+# Merged prompt output (生成物)
+merged-system-prompt.md
+merged-skill.md
+
+# Node (for potential future JS tools)
+node_modules/
+package-lock.json
+yarn.lock
