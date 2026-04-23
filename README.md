@@ -6,7 +6,7 @@
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-orange.svg)](./skill/SKILL.md)
 [![Codex Compatible](https://img.shields.io/badge/Codex-Compatible-green.svg)](./AGENTS.md)
 [![Release](https://img.shields.io/github/v/release/lyf9979/cyber-the-book-of-changes)](https://github.com/lyf9979/cyber-the-book-of-changes/releases)
-[![npm](https://img.shields.io/npm/v/cyber-bazi-skill)](https://www.npmjs.com/package/cyber-bazi-skill)
+[![NPX Ready](https://img.shields.io/badge/NPX-ready-brightgreen)](./package.json)
 [![Contributors](https://img.shields.io/badge/contributors-welcome-blue)](./CONTRIBUTORS.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
