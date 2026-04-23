@@ -1,0 +1,22 @@
+{
+  "projectName": "cyber-the-book-of-changes",
+  "projectOwner": "lyf9979",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md",
+    "CONTRIBUTORS.md"
+  ],
+  "contributors": [
+    {
+      "login": "lyf9979",
+      "name": "lyf9979",
+      "contributions": [
+        "code",
+        "doc",
+        "maintenance"
+      ]
+    }
+  ]
+}
+

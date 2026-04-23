@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build release artifacts
+        run: |
+          VERSION="${GITHUB_REF_NAME:-dev}"
+          git archive --format=zip --output "cyber-the-book-of-changes-${VERSION}.zip" HEAD
+          git archive --format=tar.gz --output "cyber-the-book-of-changes-${VERSION}.tar.gz" HEAD
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            cyber-the-book-of-changes-*.zip
+            cyber-the-book-of-changes-*.tar.gz
+

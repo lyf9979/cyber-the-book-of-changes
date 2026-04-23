@@ -4,6 +4,7 @@
 
 ## 目录
 
+- [NPX 一键安装](#npx-一键安装)
 - [Claude](#claude)
 - [OpenAI Codex CLI](#openai-codex-cli)
 - [ChatGPT Custom GPT](#chatgpt-custom-gpt)
@@ -13,6 +14,37 @@
 - [Google Gemini](#google-gemini)
 - [国产模型（通义、文心、豆包、智谱等）](#国产模型)
 - [通用 API 集成](#通用-api-集成)
+
+---
+
+## NPX 一键安装
+
+如果你已经安装 Node.js（18+），可直接用 `npx` 一键安装 skill 到本机目录。
+
+### 从 GitHub 直接安装（无需先发布 npm）
+
+```bash
+# Claude
+npx github:lyf9979/cyber-the-book-of-changes install --target claude
+
+# Codex
+npx github:lyf9979/cyber-the-book-of-changes install --target codex
+
+# Claude + Codex
+npx github:lyf9979/cyber-the-book-of-changes install --target all
+```
+
+### 从 npm 安装（发布后）
+
+```bash
+npx cyber-bazi-skill install --target all
+```
+
+### 可选参数
+
+- `--name`：安装目录名（默认 `cyber-bazi-divination`）
+- `--source`：指定源目录（用于本地开发调试）
+- `--force`：覆盖已有安装目录
 
 ---
 

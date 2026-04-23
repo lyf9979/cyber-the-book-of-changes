@@ -45,6 +45,8 @@
 4. 推送：`git push origin feat/my-feature`
 5. 在 GitHub 提交 Pull Request
 
+提交后请同步将你的 GitHub 用户名添加到 [`CONTRIBUTORS.md`](./CONTRIBUTORS.md)。
+
 #### Commit 规范
 
 遵循 [Conventional Commits](https://www.conventionalcommits.org/)：
@@ -131,6 +133,17 @@ docs: 完善 Cursor 平台接入步骤
 ## 许可
 
 贡献的内容将以 [MIT License](./LICENSE) 发布。提交 PR 即表示你同意以 MIT 协议授权你的贡献。
+
+## Releases（维护者）
+
+项目维护者可通过语义化标签触发自动发布：
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+推送标签后，`release.yml` 会自动创建 GitHub Release 并上传压缩包资产。
 
 ---
 

@@ -7,6 +7,21 @@ on:
     branches: [ main, master ]
 
 jobs:
+  node-cli-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Verify installer CLI
+        run: |
+          node --version
+          node bin/cyber-bazi-skill.js list-targets
+
   python-test:
     runs-on: ubuntu-latest
     strategy:
@@ -45,10 +60,15 @@ jobs:
 
       - name: Check markdown files exist
         run: |
+          test -f package.json
+          test -f CONTRIBUTORS.md
+          test -f .all-contributorsrc
           test -f README.md
           test -f AGENTS.md
           test -f LICENSE
           test -f CONTRIBUTING.md
+          test -f .github/workflows/release.yml
+          test -f bin/cyber-bazi-skill.js
           test -f skill/SKILL.md
           test -f references/bazi-calculation.md
           test -f references/yongshen-rules.md

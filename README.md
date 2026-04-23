@@ -5,6 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-orange.svg)](./skill/SKILL.md)
 [![Codex Compatible](https://img.shields.io/badge/Codex-Compatible-green.svg)](./AGENTS.md)
+[![Release](https://img.shields.io/github/v/release/lyf9979/cyber-the-book-of-changes)](https://github.com/lyf9979/cyber-the-book-of-changes/releases)
+[![npm](https://img.shields.io/npm/v/cyber-bazi-skill)](https://www.npmjs.com/package/cyber-bazi-skill)
+[![Contributors](https://img.shields.io/badge/contributors-welcome-blue)](./CONTRIBUTORS.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
 ---
@@ -26,6 +29,27 @@
 ---
 
 ## 🚀 快速开始
+
+### 方式 0：`npx` 一键安装（推荐）
+
+如果你已经安装了 Node.js（18+），可以直接一键安装到本机 Agent 目录。
+
+```bash
+# 安装到 Claude skills
+npx github:lyf9979/cyber-the-book-of-changes install --target claude
+
+# 安装到 Codex skills
+npx github:lyf9979/cyber-the-book-of-changes install --target codex
+
+# 同时安装到 Claude + Codex
+npx github:lyf9979/cyber-the-book-of-changes install --target all
+```
+
+当 npm 包发布后，也可使用：
+
+```bash
+npx cyber-bazi-skill install --target all
+```
 
 ### 方式 1：Claude（推荐）
 
@@ -134,6 +158,10 @@ cyber-the-book-of-changes/
 ├── README.md                     # 本文件
 ├── LICENSE                       # MIT 开源协议
 ├── CONTRIBUTING.md               # 贡献指南
+├── CONTRIBUTORS.md               # 贡献者名单
+├── package.json                  # npx 安装 CLI 包配置
+├── bin/
+│   └── cyber-bazi-skill.js       # npx 一键安装脚本
 ├── skill/
 │   └── SKILL.md                  # Claude Skill 入口
 ├── references/                   # 命理知识库
@@ -152,7 +180,8 @@ cyber-the-book-of-changes/
 │   └── integration.md            # 多平台接入指南
 └── .github/
     └── workflows/
-        └── lint.yml              # CI 检查
+        ├── lint.yml              # CI 检查
+        └── release.yml           # 标签触发自动发版
 ```
 
 ---
@@ -208,6 +237,30 @@ python scripts/bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
 - 改进排盘算法
 
 贡献指南见 [`CONTRIBUTING.md`](./CONTRIBUTING.md)。
+
+贡献者名单见 [`CONTRIBUTORS.md`](./CONTRIBUTORS.md)。
+
+---
+
+## 👥 Contributors
+
+- [@lyf9979](https://github.com/lyf9979) - maintainer
+
+欢迎提交 PR 加入贡献者列表。
+
+---
+
+## 📦 Releases
+
+本项目支持 GitHub Releases：
+
+1. 创建并推送语义化版本标签（如 `v0.1.0`）
+2. GitHub Actions 会自动打包并发布 release 资产（zip + tar.gz）
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
 
 ---
 

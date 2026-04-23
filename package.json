@@ -1,0 +1,46 @@
+{
+  "name": "cyber-bazi-skill",
+  "version": "0.1.0",
+  "description": "Cyber Book of Changes installer CLI for Claude/Codex and multi-agent usage.",
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "cyber-bazi-skill": "bin/cyber-bazi-skill.js"
+  },
+  "files": [
+    "bin",
+    "skill",
+    "references",
+    "examples",
+    "docs",
+    "scripts",
+    "AGENTS.md",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "CONTRIBUTORS.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "bazi",
+    "four-pillars",
+    "claude-skill",
+    "codex",
+    "agent",
+    "prompt"
+  ],
+  "scripts": {
+    "check": "node bin/cyber-bazi-skill.js list-targets"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyf9979/cyber-the-book-of-changes.git"
+  },
+  "homepage": "https://github.com/lyf9979/cyber-the-book-of-changes#readme",
+  "bugs": {
+    "url": "https://github.com/lyf9979/cyber-the-book-of-changes/issues"
+  }
+}
+
