@@ -245,6 +245,8 @@ python scripts/bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
 ## 👥 Contributors
 
 - [@lyf9979](https://github.com/lyf9979) - maintainer
+- Claude (Anthropic) - AI collaboration contributor
+- Codex (OpenAI) - AI collaboration contributor
 
 欢迎提交 PR 加入贡献者列表。
 
