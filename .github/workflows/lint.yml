@@ -76,6 +76,20 @@ jobs:
           test -f references/liunian-analysis.md
           test -f references/output-template.md
           test -f references/html-template.md
+          test -f references/compatibility-rules.md
+          test -f references/couple-dimensions.md
+          test -f references/wedding-selection.md
+          test -f references/child-conception.md
+          test -f references/child-dimensions.md
+          test -f references/palm-face-rules.md
+          test -f references/quick-flow.md
+          test -f references/naming-rules.md
+          test -f references/name-database.md
+          test -f references/fengshui-positions.md
+          test -f references/career-pivot.md
+          test -f references/wealth-timing.md
+          test -f references/taisui-rules.md
+          test -f references/dream-symbols.md
           test -f docs/integration.md
           test -f examples/example-01.md
           test -f examples/example-01.html

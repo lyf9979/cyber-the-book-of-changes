@@ -5,7 +5,7 @@
 
 ## 项目定位
 
-**赛博周易 · Cyber Book of Changes** 是一个基于传统子平术（四柱八字）的全维度命理分析 skill/prompt 工程项目，为各大 Agent 平台提供即插即用的算命能力。
+**赛博周易 · Cyber Book of Changes** 是一个基于传统子平术（四柱八字）的多场景命理分析 skill/prompt 工程项目，为各大 Agent 平台提供即插即用的命理工具箱能力。
 
 ## 触发条件
 
@@ -14,8 +14,29 @@
 1. 提供了出生年月日时（公历或农历）和性别
 2. 使用关键词："算命""批八字""看命盘""四柱""周易""命理""生辰"
 3. 请求分析"我的命运""我的运势""我的事业/感情/财运"等
+4. 请求"合婚""姻缘配对""结婚吉日""择日""备孕""起名""手相""面相""跳槽择时""财运择时""太岁""梦境解读"等扩展场景
 
 ## 执行流程（Agent 必须严格按此顺序）
+
+### Step 0: 判断模式
+
+根据用户意图选择模式，再加载对应文档：
+
+| 模式 | 场景 | 参考文档 |
+|------|------|---------|
+| `single_bazi` | 单人八字深度报告 | `bazi-calculation.md`、`yongshen-rules.md`、`ten-dimensions.md`、`liunian-analysis.md` |
+| `compatibility` | 两人姻缘合婚 | `compatibility-rules.md`、`couple-dimensions.md` |
+| `wedding_date` | 结婚/订婚/领证择日 | `wedding-selection.md` |
+| `child_planning` | 生育规划、属相月份时辰 | `child-conception.md`、`child-dimensions.md` |
+| `palm_face` | 手相/面相图片分析 | `palm-face-rules.md` |
+| `quick_flow` | 流年速测 | `quick-flow.md` |
+| `naming` | 起名/改名 | `naming-rules.md`、`name-database.md` |
+| `fengshui` | 家居/办公风水方位 | `fengshui-positions.md` |
+| `career_pivot` | 跳槽/转型择时 | `career-pivot.md` |
+| `wealth_timing` | 财运/投资/大额支出择时 | `wealth-timing.md` |
+| `taisui` | 本命年/太岁提醒 | `taisui-rules.md` |
+| `dream` | 梦境与八字综合解读 | `dream-symbols.md` |
+| `consultation` | 已有报告后的追问 | 复用已生成报告与相关文档 |
 
 ### Step 1: 信息收集
 
@@ -39,6 +60,19 @@
 | `liunian-analysis.md` | 流年大运分析方法 |
 | `output-template.md` | 输出格式模板 |
 | `html-template.md` | 精美 HTML 输出模板 |
+| `compatibility-rules.md` | 合婚评分与双盘规则 |
+| `couple-dimensions.md` | 合婚八维分析 |
+| `wedding-selection.md` | 结婚择日 |
+| `child-conception.md` | 生育规划 |
+| `child-dimensions.md` | 子女简化十维 |
+| `palm-face-rules.md` | 手相面相交叉分析 |
+| `quick-flow.md` | 流年速测 |
+| `naming-rules.md` / `name-database.md` | 起名改名 |
+| `fengshui-positions.md` | 风水方位 |
+| `career-pivot.md` | 事业转型择时 |
+| `wealth-timing.md` | 财运择时 |
+| `taisui-rules.md` | 太岁本命年 |
+| `dream-symbols.md` | 梦境综合解读 |
 
 ### Step 3: 排盘
 
@@ -90,6 +124,16 @@
 - 年度执行清单
 - 每月/每季度复盘机制
 
+### Step 8: 扩展场景输出
+
+- 合婚：输出总分、8 维对比、协同点、摩擦点、未来三年共同节点。
+- 择日：输出 Top 10 日期、月度热度、避开日期、现实档期提醒。
+- 生育：输出候选月份、受孕窗口、属相合冲、子女简化十维；不得涉及性别选择。
+- 手相/面相：先描述可见特征，再与八字做印证/补充/矛盾对照。
+- 起名：输出 5–10 个候选名，包含五行补益、音律、字义与风险提示。
+- 事业/财运择时：输出月度窗口表与行动清单；不构成职业或投资建议。
+- 风水：只给方位、颜色、空间节律建议，不推荐实物商品。
+
 ## 输出约束
 
 - **总字数**：建议 9000–15000 字
@@ -104,6 +148,7 @@
   - 推荐具体风水消费产品
   - 诊断疾病
   - 承诺特定结果
+  - 性别选择、寿命判断、容貌评价
 
 ## 适配的 Agent 平台
 
@@ -134,7 +179,21 @@ cyber-the-book-of-changes/
 │   ├── ten-dimensions.md         # 十大维度
 │   ├── liunian-analysis.md       # 流年分析
 │   ├── output-template.md        # 输出模板
-│   └── html-template.md          # HTML 输出模板
+│   ├── html-template.md          # HTML 输出模板
+│   ├── compatibility-rules.md    # 合婚规则
+│   ├── couple-dimensions.md      # 合婚八维
+│   ├── wedding-selection.md      # 结婚择日
+│   ├── child-conception.md       # 生育规划
+│   ├── child-dimensions.md       # 子女简化十维
+│   ├── palm-face-rules.md        # 手相面相
+│   ├── quick-flow.md             # 流年速测
+│   ├── naming-rules.md           # 起名规则
+│   ├── name-database.md          # 五行字库
+│   ├── fengshui-positions.md     # 风水方位
+│   ├── career-pivot.md           # 事业择时
+│   ├── wealth-timing.md          # 财运择时
+│   ├── taisui-rules.md           # 太岁规则
+│   └── dream-symbols.md          # 梦境解读
 ├── examples/                     # 示例命盘分析
 │   ├── example-01.md
 │   └── example-01.html

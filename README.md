@@ -1,6 +1,6 @@
-# 🔮 Cyber Book of Changes · 赛博周易
+# Cyber Book of Changes · 赛博周易
 
-> 一个面向多 Agent 平台的开源命理分析 skill —— 让 AI 像老先生一样，把八字给你批得明明白白。
+> 面向 Claude、Codex、ChatGPT、Cursor、Windsurf 与通用 LLM Agent 的多场景中文命理分析 skill。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-orange.svg)](./skill/SKILL.md)
@@ -12,27 +12,43 @@
 
 ---
 
-## ✨ 这是什么
+## 这是什么
 
-**Cyber Book of Changes（赛博周易）** 是一个基于传统子平术（四柱八字）的 **结构化命理分析 skill**，可直接加载到 Claude、Codex、ChatGPT、Cursor 等主流 Agent 平台，让 LLM 具备全维度命盘分析能力。
+**Cyber Book of Changes（赛博周易）** 原本是一个单人八字深度分析 skill，现在已扩写为多场景命理工具箱。它以传统子平术（四柱八字）为基础，复用排盘、用神、十神、流年、大运等核心能力，再按不同用户场景加载对应 reference 文档，生成结构化 Markdown 或单文件 HTML 报告。
 
-### 核心特性
+本项目强调三条边界：
 
-- ✅ **十大维度覆盖**：性格、感情、家庭、财富、健康、事业、配偶、居住/风水、学业考试名气、事件节点
-- ✅ **近三年流年建议**：基于当前大运流年输出可操作的具体建议
-- ✅ **结构化输出**：排盘 → 格局 → 十大维度 → 流年 → 综合建议，层次清晰
-- ✅ **双格式输出**：默认直接文本输出 + 可选精美 HTML 展示
-- ✅ **多平台适配**：Claude Skill / OpenAI Codex / ChatGPT / Cursor / Windsurf / 通用 LLM
-- ✅ **可追溯**：每个结论都回溯到命盘具体干支，拒绝"玄学黑话"
-- ✅ **文化向 + 理性**：纯传统文化解读，不推销、不恐吓、不替代专业决策
+- 传统文化解读，不做绝对预言。
+- 不替代医疗、法律、金融、心理治疗或重大人生决策。
+- 不推荐开光、护符、化煞物品等消费。
 
 ---
 
-## 🚀 快速开始
+## 核心能力
 
-### 方式 0：`npx` 一键安装（推荐）
+| 模式 | 场景 | 输出 |
+|---|---|---|
+| `single_bazi` | 单人八字深度分析 | 十大维度 + 2026–2028 逐月趋势 + 执行清单 |
+| `compatibility` | 两人姻缘合婚 | 合婚评分、8 维关系分析、协同点与摩擦点 |
+| `wedding_date` | 结婚 / 订婚 / 领证择日 | Top 10 推荐日期、月度热度、避开日期 |
+| `child_planning` | 生育规划 | 属相、出生月份、时辰倾向、受孕窗口区间 |
+| `palm_face` | 手相 / 面相 + 八字 | 图像特征、八字交叉验证、印证/补充/矛盾标签 |
+| `quick_flow` | 流年速测 | 当前年/月速读评分与行动建议 |
+| `naming` | 宝宝起名 / 成人改名 | 5–10 个候选名、五行补益、音形义分析 |
+| `fengshui` | 家居 / 办公方位 | 喜用方位、空间布局、颜色材质建议 |
+| `career_pivot` | 跳槽 / 转型择时 | 未来 12 个月行动窗口与准备清单 |
+| `wealth_timing` | 财运 / 大额支出择时 | 未来 24 个月财务窗口与避险提醒 |
+| `taisui` | 本命年 / 太岁 | 未来 12 年太岁时间线与行为清单 |
+| `dream` | 梦境 + 八字综合 | 梦境符号、流年流月关联、现实提醒 |
+| `consultation` | AI 命理顾问追问 | 基于已生成报告回答具体问题 |
 
-如果你已经安装了 Node.js（18+），可以直接一键安装到本机 Agent 目录。
+---
+
+## 快速开始
+
+### npx 一键安装
+
+需要 Node.js 18+。
 
 ```bash
 # 安装到 Claude skills
@@ -51,243 +67,203 @@ npx github:lyf9979/cyber-the-book-of-changes install --target all
 npx cyber-bazi-skill install --target all
 ```
 
-### 方式 1：Claude（推荐）
-
-**Claude Code / Claude.ai Pro**：
+### Claude
 
 ```bash
-# 克隆项目
 git clone https://github.com/lyf9979/cyber-the-book-of-changes.git
-
-# 将 skill/ 目录放入你的 skills 路径
 cp -r cyber-the-book-of-changes/skill ~/.claude/skills/cyber-bazi-divination
 ```
 
-或者在 Claude.ai 的项目中，将 `skill/SKILL.md` 的内容作为 Project Instructions 粘贴。
+Claude.ai Projects 可将 [skill/SKILL.md](./skill/SKILL.md) 作为 Project Instructions，并上传 `references/` 目录作为知识文件。
 
-### 方式 2：OpenAI Codex CLI
-
-将本仓库克隆到本地后：
+### OpenAI Codex CLI
 
 ```bash
+git clone https://github.com/lyf9979/cyber-the-book-of-changes.git
 cd cyber-the-book-of-changes
-# Codex 会自动读取 AGENTS.md 作为项目级 instructions
 codex
 ```
 
-或在 `~/.codex/config.toml` 中添加：
+Codex 会读取项目根目录 [AGENTS.md](./AGENTS.md)。
 
-```toml
-[projects.bazi]
-path = "/path/to/cyber-the-book-of-changes"
-instructions_file = "AGENTS.md"
-```
+### ChatGPT / Gemini / 国产模型
 
-### 方式 3：ChatGPT Custom GPT
-
-1. 打开 ChatGPT → 创建 GPT
-2. 将 `skill/SKILL.md` 的内容粘贴到 **Instructions**
-3. 上传 `references/` 下的文档作为 Knowledge Files
-4. 发布即可使用
-
-### 方式 4：Cursor / Windsurf
+将 [skill/SKILL.md](./skill/SKILL.md) 与 `references/` 下的文档合并后作为系统提示词。也可使用：
 
 ```bash
-# 在项目根目录创建规则文件
-cp AGENTS.md .cursorrules
-# 或
-cp AGENTS.md .windsurfrules
+bash scripts/merge-skill.sh
 ```
 
-### 方式 5：其他 LLM（通义、文心、豆包、智谱、Gemini 等）
-
-将 `skill/SKILL.md` + `references/` 下所有内容合并后作为系统提示词（System Prompt）加载。
-
-详细接入指南见 [`docs/integration.md`](./docs/integration.md)。
+更多平台接入见 [docs/integration.md](./docs/integration.md)。
 
 ---
 
-## 💡 使用示例
+## 使用示例
 
-**用户输入**：
-
-```
+```text
 1988.06.15 09:30 女 算一下我的八字
 ```
 
-**AI 输出结构**：
-
-```
-┌─ 一、命盘排列
-│   ├─ 四柱八字（表格）
-│   ├─ 大运排布
-│   ├─ 五行统计
-│   └─ 神煞
-├─ 二、格局判定
-│   ├─ 日主强弱
-│   ├─ 格局类型
-│   └─ 喜用神 / 忌神
-├─ 三、十大维度分析
-│   ├─ 1. 性格特质
-│   ├─ 2. 感情运势
-│   ├─ 3. 家庭与六亲
-│   ├─ 4. 财富格局
-│   ├─ 5. 健康倾向
-│   ├─ 6. 事业方向
-│   ├─ 7. 配偶特征
-│   ├─ 8. 居住与风水
-│   ├─ 9. 学业 / 考试 / 名气
-│   └─ 10. 人生事件节点
-├─ 四、近三年发展趋势建议
-│   ├─ 📅 2026 年（当前流年）
-│   ├─ 📅 2027 年
-│   └─ 📅 2028 年
-└─ 五、综合建议
+```text
+我和对象想合婚：A 是 1993-04-20 08:30 男，B 是 1995-08-15 19:20 女
 ```
 
-完整示例见 [`examples/example-01.md`](./examples/example-01.md)。
-精美 HTML 示例见 [`examples/example-01.html`](./examples/example-01.html)。
+```text
+我们准备 2027 年结婚，帮我们挑几个适合领证和办婚礼的日子
+```
+
+```text
+想 2026-2028 之间备孕，看看哪个出生月份更适合我们家庭
+```
+
+```text
+根据八字和这张手相图，交叉看一下近期状态
+```
 
 ---
 
-## 📚 项目结构
+## 输出形式
 
-```
+默认输出 Markdown：
+
+- 命盘排列
+- 格局与用神
+- 场景专属分析
+- 近三年或指定时间范围趋势
+- 总结与执行清单
+- 合规声明
+
+用户要求“HTML / 精美版 / 网页展示”时，输出单文件 HTML：
+
+- 零 CDN
+- 可离线打开
+- 响应式
+- 可打印
+- 支持双盘对比、日历视图、热力矩阵、评分圆环、八方位罗盘等组件
+
+示例：
+
+- [examples/example-01.md](./examples/example-01.md)
+- [examples/example-01.html](./examples/example-01.html)
+
+---
+
+## 项目结构
+
+```text
 cyber-the-book-of-changes/
-├── AGENTS.md                     # 通用 Agent 入口（Codex 等）
-├── README.md                     # 本文件
-├── LICENSE                       # MIT 开源协议
-├── CONTRIBUTING.md               # 贡献指南
-├── CONTRIBUTORS.md               # 贡献者名单
-├── package.json                  # npx 安装 CLI 包配置
+├── AGENTS.md
+├── README.md
+├── LICENSE
+├── CONTRIBUTING.md
+├── CONTRIBUTORS.md
+├── package.json
 ├── bin/
-│   └── cyber-bazi-skill.js       # npx 一键安装脚本
+│   └── cyber-bazi-skill.js
 ├── skill/
-│   └── SKILL.md                  # Claude Skill 入口
-├── references/                   # 命理知识库
-│   ├── bazi-calculation.md       # 排盘算法
-│   ├── yongshen-rules.md         # 格局与用神
-│   ├── ten-dimensions.md         # 十大维度分析框架
-│   ├── liunian-analysis.md       # 流年大运方法
-│   ├── output-template.md        # 文本输出模板
-│   └── html-template.md          # HTML 输出模板
-├── examples/                     # 分析示例
-│   ├── example-01.md             # 文本示例（虚构案例）
-│   └── example-01.html           # 精美 HTML 示例（虚构案例）
-├── scripts/                      # 辅助脚本
-│   └── bazi_calculator.py        # Python 排盘工具
+│   └── SKILL.md
+├── references/
+│   ├── bazi-calculation.md
+│   ├── yongshen-rules.md
+│   ├── ten-dimensions.md
+│   ├── liunian-analysis.md
+│   ├── output-template.md
+│   ├── html-template.md
+│   ├── compatibility-rules.md
+│   ├── couple-dimensions.md
+│   ├── wedding-selection.md
+│   ├── child-conception.md
+│   ├── child-dimensions.md
+│   ├── palm-face-rules.md
+│   ├── quick-flow.md
+│   ├── naming-rules.md
+│   ├── name-database.md
+│   ├── fengshui-positions.md
+│   ├── career-pivot.md
+│   ├── wealth-timing.md
+│   ├── taisui-rules.md
+│   └── dream-symbols.md
+├── scripts/
+│   ├── bazi_calculator.py
+│   ├── merge-skill.sh
+│   └── requirements.txt
+├── examples/
+│   ├── example-01.md
+│   └── example-01.html
 ├── docs/
-│   └── integration.md            # 多平台接入指南
-└── .github/
-    └── workflows/
-        ├── lint.yml              # CI 检查
-        └── release.yml           # 标签触发自动发版
+│   └── integration.md
+└── .github/workflows/
+    ├── lint.yml
+    └── release.yml
 ```
 
 ---
 
-## 🎯 十大分析维度
+## 扩展路线
 
-| # | 维度 | 说明 |
-|---|------|------|
-| 1 | 性格特质 | 基于日主 + 日支 + 月令 + 透干十神 |
-| 2 | 感情运势 | 配偶星旺衰 + 配偶宫字性 + 桃花神煞 |
-| 3 | 家庭与六亲 | 年月日时柱分别对应祖辈/父母/自身/子女 |
-| 4 | 财富格局 | 财星旺衰 + 身财对比 + 食伤生财通道 |
-| 5 | 健康倾向 | 五行偏枯对应脏腑 + 冲克刑害 |
-| 6 | 事业方向 | 喜用神五行对应行业 + 十神组合 |
-| 7 | 配偶特征 | 配偶星五行 + 配偶宫 + 位置远近 |
-| 8 | 居住与风水 | 喜用神方位、颜色、环境要素 |
-| 9 | 学业 / 考试 / 名气 | 印星 + 官星 + 食伤 + 文昌神煞 |
-| 10 | 人生事件节点 | 大运流年的重大节点预测 |
+本次扩写参考本地《skill 扩展方案》中的四阶段路线：
+
+| 阶段 | 功能 | 状态 |
+|---|---|---|
+| 第一波 | 手相面相、流年速测、AI 顾问问答 | 已加入 skill 规则与 reference |
+| 第二波 | 姻缘合婚、起名改名、事业择时、财运择时 | 已加入 skill 规则与 reference |
+| 第三波 | 结婚择日、梦境解读 | 已加入 skill 规则与 reference |
+| 第四波 | 生育规划、风水方位、太岁提醒 | 已加入 skill 规则与 reference |
+
+说明：当前版本已完成 prompt/skill 知识层扩写。日期扫描、生育枚举、起名候选生成等场景后续可继续增强为 Python 脚本。
 
 ---
 
-## 🔧 Python 排盘工具（可选）
-
-`scripts/bazi_calculator.py` 提供命令行工具：
+## Python 排盘工具
 
 ```bash
+pip install -r scripts/requirements.txt
 python scripts/bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
 ```
 
-输出四柱、藏干、十神、大运等核心信息。
-
-> 注：LLM 自身也可完成排盘，此脚本用于需要高精度或批量处理时。
+排盘工具基于 `sxtwl`，用于精确生成四柱、藏干、十神、大运、流年等基础数据。
 
 ---
 
-## ⚖️ 重要声明
+## 合规声明
 
-1. **仅为文化传承与研究**：本项目内容属传统命理文化解读，**不构成任何形式的命运预言、人生指导或专业建议**。
-2. **不替代专业决策**：涉及健康、法律、金融、婚姻等重大事项，请咨询相应领域的专业人士。
-3. **尊重理性与科学**：传统命理不应成为逃避现实、放弃努力的借口。命由己造，相由心生。
-4. **不涉及迷信活动**：本项目拒绝推荐任何风水产品、化煞开光等消费行为。
+本项目内容属于传统命理文化解读，仅供文化体验、自我反思与娱乐参考。
 
----
+本项目不构成：
 
-## 🤝 贡献
+- 医疗诊断或治疗建议
+- 法律、金融、投资建议
+- 心理治疗建议
+- 婚姻、生育、职业等重大人生决策结论
+- 寿命判断、性别选择、容貌评价
 
-欢迎提交 Issue 与 PR！特别欢迎：
-
-- 完善命理理论细节（附理论依据）
-- 增加更多 Agent 平台适配
-- 补充分析示例
-- 翻译成其他语言
-- 改进排盘算法
-
-贡献指南见 [`CONTRIBUTING.md`](./CONTRIBUTING.md)。
-
-贡献者名单见 [`CONTRIBUTORS.md`](./CONTRIBUTORS.md)。
+涉及现实重大决策时，请结合现实条件、专业意见与个人意愿综合判断。
 
 ---
 
-## 👥 Contributors
+## Contributors
 
-- [@lyf9979](https://github.com/lyf9979) - maintainer
-- Claude (Anthropic) - AI collaboration contributor
-- Codex (OpenAI) - AI collaboration contributor
+| Contributor | Role |
+|---|---|
+| [@lyf9979](https://github.com/lyf9979) | Creator / Maintainer |
+| Claude (Anthropic) | AI-assisted drafting and documentation collaboration |
+| Codex (OpenAI) | Repository implementation and release automation support |
 
-欢迎提交 PR 加入贡献者列表。
+更多见 [CONTRIBUTORS.md](./CONTRIBUTORS.md)。
 
 ---
 
-## 📦 Releases
+## Releases
 
-本项目支持 GitHub Releases：
-
-1. 创建并推送语义化版本标签（如 `v0.1.0`）
-2. GitHub Actions 会自动打包并发布 release 资产（zip + tar.gz）
+本项目支持 GitHub Releases。维护者推送语义化 tag 后会自动生成 release 资产：
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.2.0
+git push origin v0.2.0
 ```
 
 ---
 
-## 📖 参考典籍
+## License
 
-本项目命理理论主要参考：
-
-- 《渊海子平》（宋·徐子平）
-- 《三命通会》（明·万民英）
-- 《滴天髓》（明·刘伯温 / 清·任铁樵）
-- 《子平真诠》（清·沈孝瞻）
-- 《穷通宝鉴》（明·余春台）
-
----
-
-## 📄 License
-
-本项目基于 [MIT License](./LICENSE) 开源。自由使用、修改、分发。
-
----
-
-## 🌟 Star History
-
-如果这个项目对你有帮助，欢迎 Star ⭐️ 支持！
-
----
-
-**「命由天定，运由己造；知命者不忧，尽人事以听天命。」**
+MIT License，详见 [LICENSE](./LICENSE)。
