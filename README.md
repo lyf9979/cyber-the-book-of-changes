@@ -14,7 +14,7 @@
 
 ## 这是什么
 
-**Cyber Book of Changes（赛博周易）** 原本是一个单人八字深度分析 skill，现在已扩写为多场景命理工具箱。它以传统子平术（四柱八字）为基础，复用排盘、用神、十神、流年、大运等核心能力，再按不同用户场景加载对应 reference 文档，默认生成单文件 HTML 报告。
+**Cyber Book of Changes（赛博周易）** 原本是一个单人八字深度分析 skill，现在已扩写为多场景命理工具箱。它以传统子平术（四柱八字）为基础，复用排盘、用神、十神、流年、大运等核心能力，再按不同用户场景加载对应 reference 文档，默认生成可直接打开的 `.html` 报告文件。
 
 本项目强调三条边界：
 
@@ -124,7 +124,7 @@ bash scripts/merge-skill.sh
 
 ## 输出形式
 
-默认输出单文件 HTML：
+默认输出可打开的 HTML 文件：
 
 - 命盘排列
 - 格局与用神
@@ -138,7 +138,15 @@ bash scripts/merge-skill.sh
 - 可打印
 - 支持双盘对比、日历视图、热力矩阵、评分圆环、八方位罗盘等组件
 
-只有用户明确要求“Markdown / 纯文本 / 调试文本 / 不要 HTML”时，才使用 Markdown 输出模板。无论单人八字、合婚、择日、起名、风水、梦境等哪个场景，默认最终报告都应是 HTML。
+文件输出约定：
+
+- 有文件系统能力的 Agent 必须保存到 `outputs/` 目录。
+- 推荐命名：`outputs/<YYYYMMDD-HHMMSS>-<mode>-report.html`。
+- 最终回复只给 HTML 文件路径和简短说明，不把整份 HTML 粘贴到聊天窗口。
+- Claude / ChatGPT 等不能直接写文件的平台，应优先创建 HTML Artifact、Canvas 或附件。
+- 只有用户明确要求“Markdown / 纯文本 / 调试文本 / 不要 HTML”时，才使用 Markdown 输出模板。
+
+无论单人八字、合婚、择日、起名、风水、梦境等哪个场景，默认最终报告都应是一个能打开看的 HTML 文件。
 
 示例：
 
@@ -186,6 +194,8 @@ cyber-the-book-of-changes/
 │   ├── bazi_calculator.py
 │   ├── merge-skill.sh
 │   └── requirements.txt
+├── outputs/
+│   └── .gitkeep
 ├── examples/
 │   ├── example-01.md
 │   └── example-01.html

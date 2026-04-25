@@ -13,6 +13,7 @@
     "references",
     "examples",
     "docs",
+    "outputs",
     "scripts",
     "AGENTS.md",
     "README.md",
@@ -43,4 +44,3 @@
     "url": "https://github.com/lyf9979/cyber-the-book-of-changes/issues"
   }
 }
-

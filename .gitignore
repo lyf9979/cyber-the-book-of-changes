@@ -36,6 +36,11 @@ htmlcov/
 output/
 tmp/
 
+# Generated HTML reports (keep directory, ignore personal reports)
+outputs/*.html
+outputs/*.htm
+!outputs/.gitkeep
+
 # Merged prompt output (生成物)
 merged-system-prompt.md
 merged-skill.md

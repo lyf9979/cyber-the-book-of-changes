@@ -1,6 +1,6 @@
 # 输出格式模板（Markdown / 纯文本备用版）
 
-> 本模板不是默认输出。默认最终报告必须使用 `references/html-template.md` 生成单文件 HTML。
+> 本模板不是默认输出。默认最终报告必须使用 `references/html-template.md` 生成可打开的 `.html` 文件。
 > 仅当用户明确要求“Markdown / 纯文本 / 调试文本 / 不要 HTML”时，才使用本模板。
 
 严格按照以下结构输出分析结果。章节顺序固定，不可调换。

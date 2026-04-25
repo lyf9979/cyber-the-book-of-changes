@@ -145,8 +145,11 @@
 
 - **总字数**：建议 9000–15000 字
 - **格式**：
-  - 默认：严格按照 `references/html-template.md` 输出完整单文件 HTML，从 `<!doctype html>` 开始
-  - 全场景：无论使用哪个 reference，最终都必须用 HTML 呈现，不以控制台式 Markdown 作为最终报告
+  - 默认：严格按照 `references/html-template.md` 生成完整单文件 HTML，从 `<!doctype html>` 开始
+  - 文件优先：在 Codex、Claude Code、Cursor、Windsurf 等具备文件系统能力的环境中，必须写入 `outputs/<YYYYMMDD-HHMMSS>-<mode>-report.html`
+  - 最终回复：只返回生成的 HTML 文件路径和一句简短说明，不要在控制台/聊天中粘贴整份 HTML
+  - 全场景：无论使用哪个 reference，最终都必须用可打开的 HTML 文件呈现，不以控制台式 Markdown 作为最终报告
+  - 无文件系统兜底：若平台不能写入文件，则生成 HTML Artifact / Canvas / 附件；仍不支持时，才输出带文件名提示的完整 HTML 代码块
   - 例外：仅当用户明确要求 Markdown、纯文本、调试文本或不要 HTML 时，才使用 `references/output-template.md`
 - **语言**：中文，专业中带温度
 - **禁止**：
