@@ -225,6 +225,44 @@ cyber-the-book-of-changes/
 
 ---
 
+## 推荐安装高精度排盘依赖
+
+如果你希望每次排盘尽量准确，推荐在使用前先安装 Python 依赖。这样 Agent 可以直接调用本地 `sxtwl` 历法库完成高精度四柱排盘，不需要靠近似推算。
+
+### 1. 确认已安装 Python
+
+```bash
+python --version
+```
+
+如果提示找不到 `python`，请先安装 Python 3.9+，然后重新打开终端。
+
+### 2. 安装依赖
+
+在项目根目录运行：
+
+```bash
+pip install -r scripts/requirements.txt
+```
+
+如果你只想单独安装排盘核心依赖，也可以运行：
+
+```bash
+pip install sxtwl
+```
+
+### 3. 验证排盘工具
+
+```bash
+python scripts/bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
+```
+
+能看到四柱、藏干、十神、大运等信息，就说明高精度排盘工具可用。
+
+如果安装失败，不要反复重试或让 Agent 一直安装依赖。直接继续使用 skill 即可，系统会降级为用户提供四柱或 LLM 近似排盘，并在 HTML 报告里标注排盘来源与置信度。
+
+---
+
 ## 可选 Python 排盘工具
 
 ```bash
