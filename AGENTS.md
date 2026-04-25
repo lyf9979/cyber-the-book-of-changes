@@ -86,6 +86,7 @@
 排盘工具与降级规则：
 - `scripts/bazi_calculator.py` 是可选高精度工具，不是普通用户运行 skill 的必要条件。
 - Agent 不得反复要求用户安装 Python、C++ 构建环境或 `sxtwl`，也不得循环执行安装命令消耗 token。
+- 若用户在 Windows + Python 3.13 下遇到 `Microsoft Visual C++ 14.0 or greater is required`，说明 `sxtwl` 正在源码编译；解释原因后建议 Python 3.11/3.12 虚拟环境、安装 C++ Build Tools，或直接降级使用 skill。
 - 本地排盘最多尝试一次；若脚本不可用、依赖缺失、构建失败或用户环境不支持，立即停止工具尝试并降级。
 - 降级顺序：优先使用用户提供的完整四柱；若用户未提供，则按 `references/bazi-calculation.md` 做 LLM 近似排盘。
 - 最终 HTML 必须标注排盘来源：`sxtwl local`、`user provided` 或 `LLM approximate`，并写明置信度。

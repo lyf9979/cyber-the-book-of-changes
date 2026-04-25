@@ -241,17 +241,41 @@ cyber-the-book-of-changes/
 
 如果你希望每次排盘尽量准确，推荐在使用前先安装 Python 依赖。这样 Agent 可以直接调用本地 `sxtwl` 历法库完成高精度四柱排盘，不需要靠近似推算。
 
-### 1. 确认已安装 Python
+### 1. 确认 Python 版本
 
 ```bash
 python --version
 ```
 
-如果提示找不到 `python`，请先安装 Python 3.9+，然后重新打开终端。
+推荐使用 Python 3.10、3.11 或 3.12。Windows + Python 3.13 可能没有可用的 `sxtwl` 预编译 wheel，`pip install sxtwl` 会退回源码编译，并提示需要 Microsoft Visual C++ 14.0+ Build Tools。
+
+如果你已经遇到类似错误：
+
+```text
+error: Microsoft Visual C++ 14.0 or greater is required
+```
+
+这不是你操作错了，而是当前环境需要 C++ 编译工具或更换 Python 版本。
 
 ### 2. 安装依赖
 
-在项目根目录运行：
+推荐方案 A：使用 Python 3.11/3.12 创建虚拟环境后安装。
+
+```bash
+py -3.12 -m venv .venv
+.venv\Scripts\activate
+python -m pip install --upgrade pip
+pip install -r scripts/requirements.txt
+```
+
+如果你的机器没有 Python 3.12，也可以安装 Python 3.11 后把命令中的 `3.12` 换成 `3.11`。
+
+方案 B：继续使用当前 Python，但安装 Microsoft C++ Build Tools。
+
+1. 打开 https://visualstudio.microsoft.com/visual-cpp-build-tools/
+2. 安装 “Desktop development with C++”
+3. 重新打开终端
+4. 再运行：
 
 ```bash
 pip install -r scripts/requirements.txt
@@ -262,6 +286,8 @@ pip install -r scripts/requirements.txt
 ```bash
 pip install sxtwl
 ```
+
+方案 C：不安装依赖，直接使用 skill。系统会降级为用户提供四柱或 LLM 近似排盘，并在 HTML 报告中标注排盘来源与置信度。
 
 ### 3. 验证排盘工具
 

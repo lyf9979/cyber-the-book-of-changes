@@ -2,4 +2,6 @@
 
 # 寿星天文历（权威开源历法库，用于精确排盘）
 # https://github.com/yuttty/sxtwl_cpp
+# Windows + Python 3.13 可能需要 Microsoft C++ Build Tools 才能源码编译。
+# 推荐 Windows 用户优先使用 Python 3.11/3.12 虚拟环境；安装失败可跳过本依赖。
 sxtwl>=2.0.6

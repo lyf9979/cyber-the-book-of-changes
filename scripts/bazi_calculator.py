@@ -14,6 +14,11 @@ Cyber Book of Changes - Bazi Calculator
 可选依赖安装：
     pip install sxtwl
 
+Windows 提示 Microsoft Visual C++ 14.0+ 时：
+    1. 推荐改用 Python 3.11/3.12 虚拟环境后再安装
+    2. 或安装 Microsoft C++ Build Tools
+    3. 或跳过本工具，让 skill 使用 user provided / LLM approximate 降级排盘
+
 注：此脚本仅提供权威排盘数据。完整命理分析由 LLM 结合 references/ 中的知识库完成。
 若普通用户环境缺少 Python、C++ 构建工具或 sxtwl，Agent 应立即降级到 user provided
 或 LLM approximate 排盘，不应反复自动安装依赖。
@@ -31,7 +36,7 @@ try:
 except ImportError:
     print("错误：缺少可选依赖 sxtwl。", file=sys.stderr)
     print("本脚本只是高精度排盘增强工具；skill 可改用用户提供四柱或 LLM 近似排盘。", file=sys.stderr)
-    print("Agent 不应反复自动安装依赖。若你主动需要本地高精度工具，再运行：pip install sxtwl", file=sys.stderr)
+    print("Agent 不应反复自动安装依赖。Windows + Python 3.13 若安装失败，建议改用 Python 3.11/3.12 虚拟环境，或安装 Microsoft C++ Build Tools。", file=sys.stderr)
     sys.exit(1)
 
 
