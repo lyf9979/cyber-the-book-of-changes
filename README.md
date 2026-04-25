@@ -142,6 +142,8 @@ bash scripts/merge-skill.sh
 
 - 有文件系统能力的 Agent 必须保存到 `outputs/` 目录。
 - 推荐命名：`outputs/<YYYYMMDD-HHMMSS>-<mode>-report.html`。
+- 生成后必须在控制台/最终回复中打印：`HTML 报告已生成：<文件路径>`。
+- 路径优先使用绝对路径，方便用户直接复制到浏览器或文件管理器打开。
 - 最终回复只给 HTML 文件路径和简短说明，不把整份 HTML 粘贴到聊天窗口。
 - Claude / ChatGPT 等不能直接写文件的平台，应优先创建 HTML Artifact、Canvas 或附件。
 - 只有用户明确要求“Markdown / 纯文本 / 调试文本 / 不要 HTML”时，才使用 Markdown 输出模板。
