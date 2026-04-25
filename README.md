@@ -14,7 +14,7 @@
 
 ## 这是什么
 
-**Cyber Book of Changes（赛博周易）** 原本是一个单人八字深度分析 skill，现在已扩写为多场景命理工具箱。它以传统子平术（四柱八字）为基础，复用排盘、用神、十神、流年、大运等核心能力，再按不同用户场景加载对应 reference 文档，生成结构化 Markdown 或单文件 HTML 报告。
+**Cyber Book of Changes（赛博周易）** 原本是一个单人八字深度分析 skill，现在已扩写为多场景命理工具箱。它以传统子平术（四柱八字）为基础，复用排盘、用神、十神、流年、大运等核心能力，再按不同用户场景加载对应 reference 文档，默认生成单文件 HTML 报告。
 
 本项目强调三条边界：
 
@@ -124,7 +124,7 @@ bash scripts/merge-skill.sh
 
 ## 输出形式
 
-默认输出 Markdown：
+默认输出单文件 HTML：
 
 - 命盘排列
 - 格局与用神
@@ -132,14 +132,13 @@ bash scripts/merge-skill.sh
 - 近三年或指定时间范围趋势
 - 总结与执行清单
 - 合规声明
-
-用户要求“HTML / 精美版 / 网页展示”时，输出单文件 HTML：
-
 - 零 CDN
 - 可离线打开
 - 响应式
 - 可打印
 - 支持双盘对比、日历视图、热力矩阵、评分圆环、八方位罗盘等组件
+
+只有用户明确要求“Markdown / 纯文本 / 调试文本 / 不要 HTML”时，才使用 Markdown 输出模板。无论单人八字、合婚、择日、起名、风水、梦境等哪个场景，默认最终报告都应是 HTML。
 
 示例：
 
@@ -214,14 +213,26 @@ cyber-the-book-of-changes/
 
 ---
 
-## Python 排盘工具
+## 无环境可用
+
+普通用户不需要安装 Python、C++ 编译环境或 `sxtwl` 才能使用本 skill。Agent 应按下面的降级策略工作，避免反复提示安装依赖造成 token 消耗：
+
+- 优先使用本地 `scripts/bazi_calculator.py` 做一次高精度排盘。
+- 如果本地没有 Python、缺少 `sxtwl`、缺少 C++ 构建工具或脚本运行失败，立即停止安装尝试。
+- 若用户已经提供完整四柱，直接按用户四柱分析，并标注“user provided”。
+- 若用户只提供出生时间，则按 reference 规则做 LLM 近似排盘，并标注“LLM approximate / 近似排盘”。
+- 最终 HTML 报告必须写明排盘来源与置信度。
+
+---
+
+## 可选 Python 排盘工具
 
 ```bash
 pip install -r scripts/requirements.txt
 python scripts/bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
 ```
 
-排盘工具基于 `sxtwl`，用于精确生成四柱、藏干、十神、大运、流年等基础数据。
+排盘工具基于 `sxtwl`，用于精确生成四柱、藏干、十神、大运、流年等基础数据。它是增强能力，不是使用 skill 的硬性前置条件。
 
 ---
 

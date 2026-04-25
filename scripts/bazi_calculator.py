@@ -4,16 +4,19 @@
 Cyber Book of Changes - Bazi Calculator
 
 使用权威开源历法库 sxtwl（寿星天文历）保证排盘精度。
+本脚本是可选的高精度排盘增强工具，不是 skill 的必需运行环境。
 
 使用示例：
     python bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female
     python bazi_calculator.py --date 1990-05-15 --time 14:30 --gender female --longitude 114
     python bazi_calculator.py --date 1988-06-15 --time 09:30 --gender female --json
 
-依赖安装：
+可选依赖安装：
     pip install sxtwl
 
 注：此脚本仅提供权威排盘数据。完整命理分析由 LLM 结合 references/ 中的知识库完成。
+若普通用户环境缺少 Python、C++ 构建工具或 sxtwl，Agent 应立即降级到 user provided
+或 LLM approximate 排盘，不应反复自动安装依赖。
 """
 
 import argparse
@@ -26,8 +29,9 @@ from typing import List, Tuple, Dict, Optional
 try:
     import sxtwl
 except ImportError:
-    print("错误：缺少依赖库 sxtwl", file=sys.stderr)
-    print("请运行：pip install sxtwl", file=sys.stderr)
+    print("错误：缺少可选依赖 sxtwl。", file=sys.stderr)
+    print("本脚本只是高精度排盘增强工具；skill 可改用用户提供四柱或 LLM 近似排盘。", file=sys.stderr)
+    print("Agent 不应反复自动安装依赖。若你主动需要本地高精度工具，再运行：pip install sxtwl", file=sys.stderr)
     sys.exit(1)
 
 

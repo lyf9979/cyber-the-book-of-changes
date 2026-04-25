@@ -58,8 +58,8 @@
 | `yongshen-rules.md` | 格局与用神判定 |
 | `ten-dimensions.md` | 十大维度分析框架 |
 | `liunian-analysis.md` | 流年大运分析方法 |
-| `output-template.md` | 输出格式模板 |
-| `html-template.md` | 精美 HTML 输出模板 |
+| `html-template.md` | 默认单文件 HTML 输出模板 |
+| `output-template.md` | 仅在用户明确要求 Markdown/纯文本时使用 |
 | `compatibility-rules.md` | 合婚评分与双盘规则 |
 | `couple-dimensions.md` | 合婚八维分析 |
 | `wedding-selection.md` | 结婚择日 |
@@ -82,6 +82,13 @@
 4. 统计五行
 5. 排大运（7–8 步）
 6. 可选：标注神煞
+
+排盘工具与降级规则：
+- `scripts/bazi_calculator.py` 是可选高精度工具，不是普通用户运行 skill 的必要条件。
+- Agent 不得反复要求用户安装 Python、C++ 构建环境或 `sxtwl`，也不得循环执行安装命令消耗 token。
+- 本地排盘最多尝试一次；若脚本不可用、依赖缺失、构建失败或用户环境不支持，立即停止工具尝试并降级。
+- 降级顺序：优先使用用户提供的完整四柱；若用户未提供，则按 `references/bazi-calculation.md` 做 LLM 近似排盘。
+- 最终 HTML 必须标注排盘来源：`sxtwl local`、`user provided` 或 `LLM approximate`，并写明置信度。
 
 ### Step 4: 格局与用神判定
 
@@ -138,8 +145,9 @@
 
 - **总字数**：建议 9000–15000 字
 - **格式**：
-  - 默认：严格按照 `references/output-template.md` 直接文本输出
-  - 用户要求网页展示时：严格按照 `references/html-template.md` 输出精美 HTML
+  - 默认：严格按照 `references/html-template.md` 输出完整单文件 HTML，从 `<!doctype html>` 开始
+  - 全场景：无论使用哪个 reference，最终都必须用 HTML 呈现，不以控制台式 Markdown 作为最终报告
+  - 例外：仅当用户明确要求 Markdown、纯文本、调试文本或不要 HTML 时，才使用 `references/output-template.md`
 - **语言**：中文，专业中带温度
 - **禁止**：
   - 绝对化预言（"一定""必定""注定"）
